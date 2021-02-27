@@ -20,7 +20,7 @@ print("Bilgisayarın Adı : " + socket.gethostname())
 a = psutil.virtual_memory()
 print("Ram Güncel Kullanım : " + str(a[2]))
 
-# ------------------ Hard Disk Kullanımı Percent----------#
+# ------------------ Hard Disk Kullanımı Percent----- -----#
 a = psutil.disk_usage('/')
 print("Harddisk Doluluk Oranı : " + str(a[3]))
 
@@ -33,11 +33,9 @@ print("Cpu Güncel Kullanım : " + str(a))
 computer = wmi.WMI()
 computer_info = computer.Win32_ComputerSystem()[0]
 os_info = computer.Win32_OperatingSystem()[0]
-proc_info = computer.Win32_Processor()[0]
-gpu_info = computer.Win32_VideoController()[0]
 
-os_name = os_info.Name.encode('utf-8').split(b'|')[0]
-os_version = ' '.join([os_info.Version, os_info.BuildNumber])
+gpu_info = computer.Win32_VideoController()[0]
+proc_info = computer.Win32_Processor()[0]
 system_ram = float(os_info.TotalVisibleMemorySize) / 1048576  # KB to GB
 
 print('İşlemci Adı  : {0}'.format(proc_info.Name))
@@ -49,3 +47,5 @@ print('Ekran Kartı : {0}'.format(gpu_info.Name))
 total, used, free = shutil.disk_usage("/")
 
 print("Harddisk: {} GB".format((total // (2 ** 30))))
+
+# ----------------------------------------------------------#
